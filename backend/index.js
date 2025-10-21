@@ -35,7 +35,6 @@ app.use(cors({
   credentials: true
 }));
 
-const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -405,7 +404,7 @@ try {
 
 app.use(errorMiddleware);
 
-
+const PORT = process.env.PORT || 3002;
 
 app.listen(PORT, () =>{
     console.log("app started !");
