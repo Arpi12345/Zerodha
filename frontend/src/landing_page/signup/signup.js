@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import { TextField } from '@mui/material';
 import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
+import axios from "axios";
 
 const API_URL = 'http://localhost:3002/signup';  // backend signup API
 
