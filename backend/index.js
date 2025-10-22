@@ -1,4 +1,7 @@
-require('dotenv'). config();
+if(process.env.NODE_ENV != "production"){
+    require("dotenv").config();
+    
+    }
 
 const express = require("express");
 const { mongoose } = require('mongoose');
@@ -31,11 +34,12 @@ const { email } = require('zod');
 
 
 app.use(cors({
-  origin: ["process.env.CLIENT_URL", "http://localhost:3001"],
+  origin: [process.env.CLIENT_URL, "http://localhost:3001"],
   credentials: true
 }));
 
-const url = process.env.MONGO_URL;
+
+    
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -44,8 +48,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
-
+   
 
 
 // app.get("/addholdings",(req, res) =>{
@@ -404,10 +407,20 @@ try {
 
 app.use(errorMiddleware);
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 5000;
+const MONGO_URL = process.env.MONGO_URL;
 
-app.listen(PORT, () =>{
-    console.log("app started !");
-    mongoose.connect(url);
-    console.log("DB Started!");
-});
+async function startServer() {
+    try {
+        await mongoose.connect(MONGO_URL);
+        console.log("Connected to MongoDB");
+
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Failed to start server:", error);
+    }
+}
+
+startServer();

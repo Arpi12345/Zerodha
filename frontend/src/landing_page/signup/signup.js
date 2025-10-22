@@ -27,7 +27,7 @@ const Signup = () => {
 
   const handleLoginClick = (e) => { 
     e.preventDefault();
-     window.location.href = "http://localhost:3001/login";
+     window.location.href = DASH_URL;
     }
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ const Signup = () => {
         setUser({ email: "", username: "", password: "" });
 
         // ✅ redirect to frontend login page
-       window.location.replace("http://localhost:3001/login"); 
+       window.location.replace(DASH_URL); 
       }
     } catch (error) {
       console.error("Signup error", error);
