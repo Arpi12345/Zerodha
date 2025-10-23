@@ -30,13 +30,22 @@ const errorMiddleware = require('./middlewares/error-middleware');
 const { email } = require('zod');
 
 
+const CLIENT_URL = process.env.CLIENT_URL;
+const DASHBOARD_URL = process.env.DASHBOARD_URL;
 
 
+app.use(
+  cors({
+    origin: [
+      process.env.CLIENT_URL,
+      process.env.DASHBOARD_URL,
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ],
+    credentials: true,
+  })
+);
 
-app.use(cors({
-  origin: [process.env.CLIENT_URL, "http://localhost:3001"],
-  credentials: true
-}));
 
 
     
