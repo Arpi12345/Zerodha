@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;  // backend signup API
+const API_URL = process.env.REACT_APP_API_URL;  
+const DASH_URL = process.env.DASH_URL;// backend signup API
 
 const Signup = () => {
 
