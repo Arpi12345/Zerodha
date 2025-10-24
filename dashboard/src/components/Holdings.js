@@ -13,15 +13,13 @@ const { token } = useGeneralContext();
 const [allHoldings, setAllHoldings] = useState([]);
 const [orderB, setOrderB] = useState([]);
 const [orderS, setOrderS] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
-const api = process.env.REACT_APP_API_URL;
+
 
 useEffect(() => {
-  if (!token || !api) return;
+  if (!token  ) return;
+  const api = process.env.REACT_APP_API_URL;
 
-  setLoading(true);
-  setError(null);
+  
 
   Promise.all([
     axios.get(`${api}/allHoldings`, { headers: { Authorization: `Bearer ${token}` } }),
@@ -35,10 +33,8 @@ useEffect(() => {
     })
     .catch(err => {
       console.error("Data fetch error:", err);
-      setError("Failed to load data. Please try again later.");
     })
-    .finally(() => setLoading(false));
-}, [token, api]);
+}, [token]);
 
 
 
@@ -99,11 +95,8 @@ const formatINR = (value) =>
 
   return (
     <>
-      {loading && <p>Loading data...</p>}
-    {error && <p className="error">{error}</p>}
-
-    {!loading && !error && (
-      <>
+  
+      
 
 
 
@@ -239,9 +232,7 @@ const formatINR = (value) =>
       
 
     </>
-    )}
-    </>
-
+  
   );
 };
 

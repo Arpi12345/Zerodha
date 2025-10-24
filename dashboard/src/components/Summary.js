@@ -27,10 +27,10 @@ const Summary = () => {
     if (!token) return;
 
     Promise.all([
-      axios.get("http://localhost:3002/userByuOrders", {
+      axios.get(`${api}/userByuOrders`, {
         headers: { Authorization: `Bearer ${token}` },
       }),
-      axios.get("http://localhost:3002/userSellOrders", {
+      axios.get(`${api}/userSellOrders`, {
         headers: { Authorization: `Bearer ${token}` },
       }),
     ])
