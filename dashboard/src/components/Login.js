@@ -4,11 +4,13 @@ import Card from "@mui/material/Card";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import useGeneralContext from "./useGeneralContext";
 
-const URL  = process.env.REACT_APP_API_URL;
- // backend API
+ // backend API  
+ const URL = process.env.REACT_APP_DASH_URL + "/login"; // ensure /login endpoint
+
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
+
   const { login } = useGeneralContext();
 
   const handleInput = (e) => {
@@ -17,6 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
 
     try {
       const response = await axios.post(URL, {
