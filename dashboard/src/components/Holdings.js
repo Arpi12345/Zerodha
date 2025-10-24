@@ -18,15 +18,17 @@ const { token } = useGeneralContext();
 
  useEffect(() => {
     if (!token) return;
+const api = process.env.REACT_APP_API_URL;
+
 
     Promise.all([
-      axios.get("http://localhost:3002/allHoldings", {
+      axios.get(`${api}/allHoldings`, {
         headers: { Authorization: `Bearer ${token}` }
       }),
-      axios.get("http://localhost:3002/neworders", {
+      axios.get(`${api}/neworders`, {
         headers: { Authorization: `Bearer ${token}` }
       }),
-      axios.get("http://localhost:3002/neworderSells", {
+      axios.get(`${api}/neworderSells`, {
         headers: { Authorization: `Bearer ${token}` }
       })
     ])

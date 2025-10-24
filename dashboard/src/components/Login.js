@@ -4,7 +4,8 @@ import Card from "@mui/material/Card";
 import { TextField, Button, Typography, Box } from "@mui/material";
 import useGeneralContext from "./useGeneralContext";
 
-const URL = "http://localhost:3002/login"; // backend API
+const URL  = process.env.REACT_APP_API_URL;
+ // backend API
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
