@@ -10,35 +10,36 @@ import useGeneralContext from "./useGeneralContext";
 const Holdings = () => {
   
 const { token } = useGeneralContext();
-  const [allHoldings, setAllHoldings] = useState([]);
-  
-   const [ orderB, setOrderB] = useState([]);
-    const [ orderS, SetOrderS] = useState([]);
-
-
- useEffect(() => {
-    if (!token) return;
+const [allHoldings, setAllHoldings] = useState([]);
+const [orderB, setOrderB] = useState([]);
+const [orderS, setOrderS] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
 const api = process.env.REACT_APP_API_URL;
 
+useEffect(() => {
+  if (!token || !api) return;
 
-    Promise.all([
-      axios.get(`${api}/allHoldings`, {
-        headers: { Authorization: `Bearer ${token}` }
-      }),
-      axios.get(`${api}/neworders`, {
-        headers: { Authorization: `Bearer ${token}` }
-      }),
-      axios.get(`${api}/neworderSells`, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-    ])
-      .then(([res1, res2, res3]) => {
-        setAllHoldings(res1.data);
-        setOrderB(res2.data);
-        SetOrderS(res3.data);
-      })
-      .catch(err => console.error("Data fetch error", err));
-  }, [token]);
+  setLoading(true);
+  setError(null);
+
+  Promise.all([
+    axios.get(`${api}/allHoldings`, { headers: { Authorization: `Bearer ${token}` } }),
+    axios.get(`${api}/neworders`, { headers: { Authorization: `Bearer ${token}` } }),
+    axios.get(`${api}/neworderSells`, { headers: { Authorization: `Bearer ${token}` } })
+  ])
+    .then(([res1, res2, res3]) => {
+      setAllHoldings(res1.data);
+      setOrderB(res2.data);
+      setOrderS(res3.data);
+    })
+    .catch(err => {
+      console.error("Data fetch error:", err);
+      setError("Failed to load data. Please try again later.");
+    })
+    .finally(() => setLoading(false));
+}, [token, api]);
+
 
 
 
@@ -98,6 +99,14 @@ const formatINR = (value) =>
 
   return (
     <>
+      {loading && <p>Loading data...</p>}
+    {error && <p className="error">{error}</p>}
+
+    {!loading && !error && (
+      <>
+
+
+
       <h3 className="title"> All Holdings ({allHoldings.length})</h3>
 
       <div className="order-table">
@@ -220,13 +229,19 @@ const formatINR = (value) =>
     <p>P&L</p>
   </div>
 </div>
+    
 
 
 
           <VerticalGraph data={data} />
         </div>
       </div>
+      
+
     </>
+    )}
+    </>
+
   );
 };
 
