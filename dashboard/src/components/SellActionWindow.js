@@ -11,9 +11,11 @@ const SellActionWindow = ({ uid }) => {
   const [stockPrice, setStockPrice] = useState(0.0);
   const [chequeValue, setchequeValue] = useState(0.0);
   const { username, closeSellWindow } = useGeneralContext();
+  const api = process.env.REACT_APP_API_URL;
+
   
   const handlSellClick = () => {
-    axios.post('http://localhost:3002/OrderSells',{
+    axios.post(`${api}/OrderSells`,{
     name: uid,
     price: stockPrice,
     qty: stockQuantity,

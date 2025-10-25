@@ -25,6 +25,8 @@ const Summary = () => {
   // ✅ Fetch buy/sell orders if authenticated
   useEffect(() => {
     if (!token) return;
+      const api = process.env.REACT_APP_API_URL;
+
 
     Promise.all([
       axios.get(`${api}/userByuOrders`, {
