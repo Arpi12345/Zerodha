@@ -6,7 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;  
-const DASH_URL = `${ process.env.REACT_APP_DASH_URL}/login`;// backend signup API
+const DASH_URL =  process.env.REACT_APP_DASH_URL;// backend signup API
 
 const Signup = () => {
 
@@ -43,7 +43,7 @@ const Signup = () => {
         setUser({ email: "", username: "", password: "" });
 
         // ✅ redirect to frontend login page
-                window.location.href = DASH_URL;
+            window.location.href = "https://zerodha-frontend-idj7.onrender.com/login";
 
        
       }
