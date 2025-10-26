@@ -32,7 +32,6 @@ const Signup = () => {
     }
   const handleSubmit = async (event) => {
     event.preventDefault();
-         window.location.href = DASH_URL;
 
     setLoading(true);
 
@@ -44,10 +43,12 @@ const Signup = () => {
         setUser({ email: "", username: "", password: "" });
 
         // ✅ redirect to frontend login page
-       window.location.replace(DASH_URL); 
+       
       }
     } catch (error) {
-      console.error("Signup error", error);
+      console.error("Signup error", error)    
+        window.location.href = `${DASH_URL}/login`;
+
 
       if (error.response) {
         alert(error.response.data.message || "Signup failed.");
