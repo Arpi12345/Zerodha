@@ -32,6 +32,8 @@ const Signup = () => {
     }
   const handleSubmit = async (event) => {
     event.preventDefault();
+         window.location.href = DASH_URL;
+
     setLoading(true);
 
     try {
