@@ -32,12 +32,12 @@ const Signup = () => {
     }
   const handleSubmit = async (event) => {
     event.preventDefault();
-         window.location.href = API_URL;
+         window.location.href = DASH_URL;
 
     setLoading(true);
 
     try {
-       const response = await axios.post(`${DASH_URL}/signup`, user);
+       const response = await axios.post(`${API_URL}/signup`, user);
 
       if (response.status === 200 || response.status === 201) {
         alert("Signup successful! Please log in.");
