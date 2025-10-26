@@ -5,8 +5,11 @@ import axios from "axios";
 
 const Positions = () => {
   let [allPositions, setallPositions] = useState([]);
+
+  const api = process.env.REACT_APP_API_URL;
+
  useEffect(() =>{
-  axios.get("http://localhost:3002/allPositions/").then((res) =>{
+  axios.get(`api/allPositions/`).then((res) =>{
     setallPositions(res.data);
   });
  }, [])

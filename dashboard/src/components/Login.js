@@ -5,7 +5,8 @@ import { TextField, Button, Typography, Box } from "@mui/material";
 import useGeneralContext from "./useGeneralContext";
 
  // backend API  
- const URL = process.env.REACT_APP_DASH_URL + "/login"; // ensure /login endpoint
+ const LOGIN_URL = `${process.env.REACT_APP_API_URL}/login`;
+// ensure /login endpoint
 
 
 const Login = () => {
@@ -22,7 +23,7 @@ const Login = () => {
 
 
     try {
-      const response = await axios.post(URL, {
+      const response = await axios.post(LOGIN_URL, {
         email: user.email,
         password: user.password,
       });

@@ -12,14 +12,17 @@ const Orders = () => {
 
 const { isAuthenticated,token} = useGeneralContext();
 
+
   useEffect(() => {
     if (!isAuthenticated) return;
 
     const headers = { Authorization: `Bearer ${token}` };
+          const api = process.env.REACT_APP_API_URL;
+
 
     Promise.all([
-      axios.get("http://localhost:3002/neworders", { headers }),
-      axios.get("http://localhost:3002/neworderSells", { headers })
+      axios.get(`${api}/neworders`, { headers }),
+      axios.get(`${api}/neworderSells`, { headers })
     ])
       .then(([buyRes, sellRes]) => {
         setOrderB(buyRes.data);
