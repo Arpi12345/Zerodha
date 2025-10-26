@@ -47,7 +47,7 @@ const Signup = () => {
       }
     } catch (error) {
       console.error("Signup error", error)    
-        window.location.href = `${DASH_URL}`;
+        window.location.href = DASH_URL;
 
 
       if (error.response) {
