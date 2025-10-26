@@ -35,7 +35,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-       const response = await axios.post(`${API_URL}signup`, user);
+       const response = await axios.post(`${API_URL}/signup`, user);
 
       if (response.status === 200 || response.status === 201) {
         alert("Signup successful! Please log in.");

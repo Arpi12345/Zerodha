@@ -9,10 +9,10 @@ const Positions = () => {
   const api = process.env.REACT_APP_API_URL;
 
  useEffect(() =>{
-  axios.get(`api/allPositions/`).then((res) =>{
+  axios.get(`${api}/allPositions/`).then((res) =>{
     setallPositions(res.data);
   });
- }, [])
+ }, [api])
 
 
   return (
