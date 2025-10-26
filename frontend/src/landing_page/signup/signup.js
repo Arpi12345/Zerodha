@@ -32,7 +32,7 @@ const Signup = () => {
     }
   const handleSubmit = async (event) => {
     event.preventDefault();
-         window.location.href = DASH_URL;
+         window.location.href = API_URL;
 
     setLoading(true);
 
