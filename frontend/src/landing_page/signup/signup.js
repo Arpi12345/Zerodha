@@ -43,11 +43,12 @@ const Signup = () => {
         setUser({ email: "", username: "", password: "" });
 
         // ✅ redirect to frontend login page
+                window.location.href = DASH_URL;
+
        
       }
     } catch (error) {
       console.error("Signup error", error)    
-        window.location.href = DASH_URL;
 
 
       if (error.response) {
