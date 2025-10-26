@@ -37,8 +37,8 @@ const DASHBOARD_URL = process.env.DASHBOARD_URL;
 app.use(
   cors({
     origin: [
-      process.env.CLIENT_URL,
-      process.env.DASHBOARD_URL,
+      CLIENT_URL,
+      DASHBOARD_URL,
       "http://localhost:3000",
       "http://localhost:3001",
     ],
