@@ -43,7 +43,7 @@ const Signup = () => {
         setUser({ email: "", username: "", password: "" });
 
         // ✅ redirect to frontend login page
-            window.location.href = "https://zerodha-frontend-idj7.onrender.com/login";
+            window.location.href = DASH_URL;
 
        
       }
